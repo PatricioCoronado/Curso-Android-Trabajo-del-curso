@@ -1,5 +1,7 @@
 package com.example.mislugares5;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -11,13 +13,39 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity //Así soporte Toolbar
+{
+    public Button bAcercaDe;
+    public Button bSalir;
+    public Button bPreferencias;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Código del programador
+        bAcercaDe = findViewById(R.id.button03);
+        bAcercaDe.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                lanzarAcercaDe(null);
+            }
+        });
+        bSalir=findViewById(R.id.button04);
+        bSalir.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                lanzarSalir(null);
+            }
+       });
+        //Busca el id del botón preferencias
+        bPreferencias=findViewById(R.id.button02);
+        bPreferencias.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                lanzarPreferecias();
+            }
+        });
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -29,26 +57,75 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-    }
+    } // onCreate
 
+    //MENU
+    //Metodo para añadir el menú de menu_scrolling a esta actividad
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
         return true;
     }
-
+    //Método para leer la opción elegida en el menú y ejecutar el código asociado
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        boolean objetivoOK=false;
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch(id)
+        {
+            case R.id.action_settings:
+                objetivoOK=true;
+                lanzarPreferecias();
+            break;
+            case R.id.acercaDe:
+                objetivoOK=true;
+                lanzarAcercaDe(null);
+            break;
         }
+        if (objetivoOK) return true;
         return super.onOptionsItemSelected(item);
     }
+    //Método del botón Acerca de. Lanza la activity acercaDe
+    public void lanzarAcercaDe(View view)
+    {
+        //Crea un intent para lanzar la actividad
+        Intent i = new Intent(this, AcercaDeActivity.class);
+        /* .....Parte para enviar información a la activity lanzada........
+        i.putExtra("usuario", "Patricio Coronado");
+        i.putExtra("dni", 01116607);
+        startActivityForResult(i, 1234);//Para recibir resultados
+        //startActivity(i);//Para no recibir resultados
+        */
+        startActivity(i);//Lanza la actividad
+    }
+    /* //Método  para leer resultados devueltos por alguna actividad lanzada
+    @Override protected void onActivityResult(int requestCode, int resultCode,
+                                              Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1234 && resultCode == RESULT_OK)
+        {
+
+            String res = data.getExtras().getString("resultado");
+            bAcercaDe.setText(res);
+        }
+
+    }
+    */
+    public void lanzarPreferecias()
+    {
+        Intent i = new Intent(this,PreferenciasActivity.class);
+        startActivity(i);
+    }
+    //Método del botón Salir
+    public void lanzarSalir(View view){
+        finish();
+    }
+
 }

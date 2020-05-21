@@ -18,11 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mostrar_main" />
+
         <Button
             android:id="@+id/button02"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/preferencias_main" />
+
         <Button
             android:id="@+id/button03"
             android:layout_width="match_parent"

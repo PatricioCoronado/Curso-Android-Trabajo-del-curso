@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mi aplicación</string>
+    <string name="app_name">Mis Lugares</string>
     <string name="accion_mostrar">Mostrar Lugares</string>
     <string name="accion_preferencias">Preferencias</string>
     <string name="accion_acerca_de">Acerca de </string>
@@ -22,4 +22,11 @@
     <string name="acerca_de_main">acerca de</string>
     <string name="salir_main">salir</string>
     <string name="tituloAplicacion">Mi Aplicación</string>
+    <string name ="acerca_de">
+        Anoche soñe mi vida\n
+        más vivida que soñada\n
+        pués fué la despedida\n
+        más sentida que imaginada\n
+        mi juventud sin amor\n
+    </string>
 </resources>
