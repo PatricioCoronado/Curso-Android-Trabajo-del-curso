@@ -2,20 +2,20 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="preferencias_principal" >
     <CheckBoxPreference
-        android:key="musica"
-        android:title="Reproducir música"
-        android:summary="Se reproduce música de fondo"/>
+        android:key="notificaciones"
+        android:title="mandar notificaciones"
+        android:summary="notificar si estamos cerca de un lugar"/>
     <ListPreference
-        android:key="graficos"
-        android:title="Tipo de gráficos"
-        android:summary="Se escoge la representación de gráficos"
-        android:entries="@array/tiposGraficos"
-        android:entryValues="@array/tiposGraficosValores"
+        android:key="ordenacion"
+        android:title="criterio de ordenación"
+        android:summary="que lugares quieres que aparezcan antes"
+        android:entries="@array/tiposCriterios"
+        android:entryValues="@array/tiposCriteriosValores"
         android:defaultValue="1"/>
     <EditTextPreference
-        android:key="fragmentos"
-        android:title="Número de Fragmentos"
-        android:summary="En cuantos trozos se divide un asteroide"
+        android:key="lugares"
+        android:title="máximo de lugares a mostrar"
+        android:summary="limita el número de lugares que se pueden mostrar"
         android:inputType="number"
-        android:defaultValue="3"/>
+        android:defaultValue="5"/>
 </PreferenceScreen>
