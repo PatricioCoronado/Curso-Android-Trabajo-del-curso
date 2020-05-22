@@ -1,11 +1,13 @@
-    package com.example.mislugares5;
+    package com.example.mislugares5.presentacion;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class AcercaDeActivity extends Activity {
+import com.example.mislugares5.R;
+
+    public class AcercaDeActivity extends Activity {
     /*
         public TextView textoNombre;
     */

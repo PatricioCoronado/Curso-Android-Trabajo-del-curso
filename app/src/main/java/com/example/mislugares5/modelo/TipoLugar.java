@@ -1,8 +1,11 @@
-package com.example.mislugares5;
+package com.example.mislugares5.modelo;
+
+import com.example.mislugares5.R;
+
 public enum TipoLugar
 {
     //Lista de enumerados con 2 atributos
-    OTROS("Otros",R.drawable.otros),
+    OTROS("Otros", R.drawable.otros),
     RESTAURANTE("Restaurante",R.drawable.restaurante),
     BAR("Bar",R.drawable.bar),
     COPAS("Copas",R.drawable.copas),

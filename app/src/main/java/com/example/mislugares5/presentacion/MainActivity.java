@@ -1,10 +1,12 @@
-package com.example.mislugares5;
+package com.example.mislugares5.presentacion;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.mislugares5.R;
+import com.example.mislugares5.presentacion.AcercaDeActivity;
+import com.example.mislugares5.presentacion.PreferenciasActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -137,7 +139,7 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
     public void lanzarPreferecias()//Botón PREFERENCIAS................
     //Lanza una nueva activity
     {
-        Intent i = new Intent(this,PreferenciasActivity.class);
+        Intent i = new Intent(this, PreferenciasActivity.class);
         startActivity(i);
     }
     public void mostrarPreferencias()

@@ -1,4 +1,4 @@
-package com.example.mislugares5;
+package com.example.mislugares5.presentacion;
 
 import android.app.Activity;
 import android.os.Bundle;

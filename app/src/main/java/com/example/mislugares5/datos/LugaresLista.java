@@ -1,5 +1,9 @@
-package com.example.mislugares5;
+package com.example.mislugares5.datos;
 
+
+import com.example.mislugares5.datos.RepositorioLugares;
+import com.example.mislugares5.modelo.Lugar;
+import com.example.mislugares5.modelo.TipoLugar;
 
 import java.util.List;
 import java.util.ArrayList;

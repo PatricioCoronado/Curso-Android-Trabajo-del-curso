@@ -1,4 +1,6 @@
-package com.example.mislugares5;
+package com.example.mislugares5.datos;
+
+import com.example.mislugares5.modelo.Lugar;
 
 public interface RepositorioLugares
 {

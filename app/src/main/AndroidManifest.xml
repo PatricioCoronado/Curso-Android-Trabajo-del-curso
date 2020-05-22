@@ -3,20 +3,20 @@
     package="com.example.mislugares5">
 
     <application
-        android:name="Aplicacion"
+        android:name=".presentacion.Aplicacion"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PreferenciasActivity"/>
-        <activity android:name=".AcercaDeActivity"
+        <activity android:name=".presentacion.PreferenciasActivity"/>
+        <activity android:name=".presentacion.AcercaDeActivity"
             android:label="Acerca de ..."
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
 
             <activity
-            android:name=".MainActivity"
+            android:name=".presentacion.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
