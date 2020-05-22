@@ -2,6 +2,7 @@ package com.example.mislugares5;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -10,45 +11,59 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity //Así soporte Toolbar
 {
     public Button bAcercaDe;
     public Button bSalir;
     public Button bPreferencias;
+    public Button bMostrar;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Código del programador
+        //Acción del boton MOSTRAR........................
+        bMostrar=findViewById(R.id.button01);
+        bMostrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                mostrarPreferencias();
+            }
+        });
+        //Acción del boton ACERCADE........................
         bAcercaDe = findViewById(R.id.button03);
         bAcercaDe.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 lanzarAcercaDe(null);
             }
         });
+        //Acción del boton SALIR............................
         bSalir=findViewById(R.id.button04);
         bSalir.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 lanzarSalir(null);
             }
        });
-        //Busca el id del botón preferencias
+        //Acción del boton PREFERENCIAS......................
         bPreferencias=findViewById(R.id.button02);
         bPreferencias.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 lanzarPreferecias();
             }
         });
-
+        //TOOLBAR.............................................
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //FLOATING BUTTON.....................................
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,9 +72,9 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
                         .setAction("Action", null).show();
             }
         });
-    } // onCreate
+    } // Fin onCreate---------------------------------------------------------------------
 
-    //MENU
+    //MENU......................................................
     //Metodo para añadir el menú de menu_scrolling a esta actividad
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -91,9 +106,9 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
         if (objetivoOK) return true;
         return super.onOptionsItemSelected(item);
     }
-    //Método del botón Acerca de. Lanza la activity acercaDe
-    public void lanzarAcercaDe(View view)
-    {
+    //METODOS LANZADOS POR LOS BOTONES---------------------------------------
+    public void lanzarAcercaDe(View view) //Botón ACERCADE..................
+    {//Lanza una activity
         //Crea un intent para lanzar la actividad
         Intent i = new Intent(this, AcercaDeActivity.class);
         /* .....Parte para enviar información a la activity lanzada........
@@ -118,14 +133,27 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
 
     }
     */
-    public void lanzarPreferecias()
+    //Mostrar las preferencias para que el usuario las cambie
+    public void lanzarPreferecias()//Botón PREFERENCIAS................
+    //Lanza una nueva activity
     {
         Intent i = new Intent(this,PreferenciasActivity.class);
         startActivity(i);
     }
+    public void mostrarPreferencias()
+    //Muestra como acceder a las preferencias guardadas en el dispositivo
+    {
+        SharedPreferences pref =
+                PreferenceManager.getDefaultSharedPreferences(this);
+        String s = pref.getString("email","@");
+        //String s = "notificaciones: "+ pref.getBoolean("notificaciones",true)
+        //        +", máximo a listar: " + pref.getString("maximo","?");
+
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
     //Método del botón Salir
-    public void lanzarSalir(View view){
+    public void lanzarSalir(View view)
+    {
         finish();
     }
-
 }
