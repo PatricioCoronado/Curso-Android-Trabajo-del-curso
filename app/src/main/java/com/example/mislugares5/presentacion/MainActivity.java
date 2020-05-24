@@ -173,7 +173,8 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
 
 
 
-    public void lanzarVistaLugar(View view){
+    public void lanzarVistaLugar(View view)
+    {
         final EditText entrada = new EditText(this);
         entrada.setText("0");
         new AlertDialog.Builder(this)
@@ -189,9 +190,6 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
                     }
                 }).setNegativeButton("Cancelar", null).show();
     }
-
-
-
 
     /*
     public void lanzarVistaLugar(View view)

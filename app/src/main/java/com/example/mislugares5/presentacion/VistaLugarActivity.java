@@ -1,9 +1,14 @@
 package com.example.mislugares5.presentacion;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.mislugares5.R;
 import com.example.mislugares5.casos_uso.CasosUsoLugar;
@@ -17,8 +22,10 @@ public class VistaLugarActivity extends AppCompatActivity {
     private CasosUsoLugar usoLugar;
     private int pos;
     private Lugar lugar;
+    //private Object Menu;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_lugar);
         Bundle extras = getIntent().getExtras();
@@ -27,6 +34,50 @@ public class VistaLugarActivity extends AppCompatActivity {
         usoLugar = new CasosUsoLugar(this, lugares);
         lugar = lugares.elemento(pos);
         actualizaVistas(pos);
+
+
+
+        
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.vista_lugar, menu);
+        return true;
+    }
+
+
+    @Override public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()) {
+            case R.id.accion_compartir:
+                return true;
+            case R.id.accion_llegar:
+                return true;
+            case R.id.accion_editar:
+                return true;
+            case R.id.accion_borrar:
+                confirmarBorradoLugar();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    public void confirmarBorradoLugar()
+    {
+        new AlertDialog.Builder(this)
+                .setTitle("Se va a borrar un lugar")
+                .setMessage("¿Realmente quiere hacerlo?")
+                .setPositiveButton("Borralo yaaaa", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int whichButton)
+                    {
+                        usoLugar.borrar(pos);
+                    }
+                }).setNegativeButton("¡No por Dios no!", null).show();
     }
     public void actualizaVistas(int pos) {
         //nombre

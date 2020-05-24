@@ -23,4 +23,9 @@ public class CasosUsoLugar
         i.putExtra("pos", pos);
         actividad.startActivity(i);
     }
+    public void borrar(final int id)
+    {
+        lugares.borrar(id);
+        actividad.finish();
+    }
 }
