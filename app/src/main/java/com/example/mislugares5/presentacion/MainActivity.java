@@ -1,15 +1,21 @@
 package com.example.mislugares5.presentacion;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.mislugares5.R;
+import com.example.mislugares5.casos_uso.CasosUsoActividades;
+import com.example.mislugares5.casos_uso.CasosUsoLugar;
+import com.example.mislugares5.datos.RepositorioLugares;
 import com.example.mislugares5.presentacion.AcercaDeActivity;
+import com.example.mislugares5.presentacion.Aplicacion;
 import com.example.mislugares5.presentacion.PreferenciasActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -18,10 +24,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity //Así soporte Toolbar
 {
+    private RepositorioLugares lugares;
+    private CasosUsoLugar usoLugar;
+    private CasosUsoActividades usoActividad;
     public Button bAcercaDe;
     public Button bSalir;
     public Button bPreferencias;
@@ -31,7 +41,10 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Código del programador
+        //A partir de aquí mi código
+        lugares = ((Aplicacion) getApplication()).lugares;
+        usoLugar = new CasosUsoLugar(this, lugares);
+        //usoActividad = new CasosUsoActividades(this);
         //Acción del boton MOSTRAR........................
         bMostrar=findViewById(R.id.button01);
         bMostrar.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +109,10 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
         int id = item.getItemId();
         switch(id)
         {
+            case R.id.menu_buscar:
+                objetivoOK=true;
+                lanzarVistaLugar(null);
+            break;
             case R.id.action_settings:
                 objetivoOK=true;
                 lanzarPreferecias();
@@ -114,7 +131,7 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
         //Crea un intent para lanzar la actividad
         Intent i = new Intent(this, AcercaDeActivity.class);
         /* .....Parte para enviar información a la activity lanzada........
-        i.putExtra("usuario", "Patricio Coronado");
+        i.putExtra("usuario", "Patricio Corona  do");
         i.putExtra("dni", 01116607);
         startActivityForResult(i, 1234);//Para recibir resultados
         //startActivity(i);//Para no recibir resultados
@@ -153,6 +170,36 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
 
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
+
+
+
+    public void lanzarVistaLugar(View view){
+        final EditText entrada = new EditText(this);
+        entrada.setText("0");
+        new AlertDialog.Builder(this)
+                .setTitle("Selección de lugar")
+                .setMessage("indica su id:")
+                .setView(entrada)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int whichButton)
+                    {
+                        int id = Integer.parseInt (entrada.getText().toString());
+                        usoLugar.mostrar(id);
+                    }
+                }).setNegativeButton("Cancelar", null).show();
+    }
+
+
+
+
+    /*
+    public void lanzarVistaLugar(View view)
+    {
+        usoLugar.mostrar(0);
+    }
+*/
+
     //Método del botón Salir
     public void lanzarSalir(View view)
     {

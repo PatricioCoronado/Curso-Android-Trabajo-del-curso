@@ -1,7 +1,5 @@
 package com.example.mislugares5.datos;
-
 import com.example.mislugares5.modelo.Lugar;
-
 public interface RepositorioLugares
 {
     Lugar elemento(int id);//Devuelve un lugar a partir de un entero que será la posición
