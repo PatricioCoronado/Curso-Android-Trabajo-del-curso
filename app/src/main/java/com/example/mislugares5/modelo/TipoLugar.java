@@ -28,4 +28,11 @@ public enum TipoLugar
     //Getters
     public String getTexto(){return this.texto;}
     public int getRecurso(){return recurso;}
+    public static String[] getNombres() {
+        String[] resultado = new String[TipoLugar.values().length];
+        for (TipoLugar tipo : TipoLugar.values()) {
+            resultado[tipo.ordinal()] = tipo.texto;
+        }
+        return resultado;
+    }
 }

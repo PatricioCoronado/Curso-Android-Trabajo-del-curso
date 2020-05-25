@@ -1,5 +1,6 @@
 package com.example.mislugares5.presentacion;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,18 +12,22 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.mislugares5.R;
+import com.example.mislugares5.casos_uso.CasosUsoActividades;
 import com.example.mislugares5.casos_uso.CasosUsoLugar;
 import com.example.mislugares5.datos.RepositorioLugares;
 import com.example.mislugares5.modelo.Lugar;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class VistaLugarActivity extends AppCompatActivity {
+public class VistaLugarActivity extends AppCompatActivity
+{
     private RepositorioLugares lugares;
     private CasosUsoLugar usoLugar;
+    private  CasosUsoActividades usoActividad;
     private int pos;
     private Lugar lugar;
     //private Object Menu;
+    final static int RESULTADO_EDITAR = 1;
 
     @Override protected void onCreate(Bundle savedInstanceState)
     {
@@ -32,32 +37,26 @@ public class VistaLugarActivity extends AppCompatActivity {
         pos = extras.getInt("pos", 0);
         lugares = ((Aplicacion) getApplication()).lugares;
         usoLugar = new CasosUsoLugar(this, lugares);
+        usoActividad = new CasosUsoActividades(this);
         lugar = lugares.elemento(pos);
-        actualizaVistas(pos);
-
-
-
-        
-
-
+        actualizaVistas();
     }
-
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu)
     {
         getMenuInflater().inflate(R.menu.vista_lugar, menu);
         return true;
     }
-
-
     @Override public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch (item.getItemId()) {
+        switch (item.getItemId())
+        {
             case R.id.accion_compartir:
                 return true;
             case R.id.accion_llegar:
                 return true;
-            case R.id.accion_editar:
+            case R.id.accion_editar://Lanza la actividad que edita el lugar
+                usoLugar.editar(pos,RESULTADO_EDITAR);
                 return true;
             case R.id.accion_borrar:
                 confirmarBorradoLugar();
@@ -66,7 +65,7 @@ public class VistaLugarActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    public void confirmarBorradoLugar()
+   public void confirmarBorradoLugar()
     {
         new AlertDialog.Builder(this)
                 .setTitle("Se va a borrar un lugar")
@@ -79,7 +78,7 @@ public class VistaLugarActivity extends AppCompatActivity {
                     }
                 }).setNegativeButton("¡No por Dios no!", null).show();
     }
-    public void actualizaVistas(int pos) {
+    public void actualizaVistas() {
         //nombre
         TextView nombre = findViewById(R.id.nombre);
         nombre.setText(lugar.getNombre());
@@ -143,6 +142,16 @@ public class VistaLugarActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+    //Recepción de la respuesta de EdicionLugarActivity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULTADO_EDITAR) {
+            actualizaVistas();
+            findViewById(R.id.scrollView1).invalidate();
+        }
     }
 }
 
