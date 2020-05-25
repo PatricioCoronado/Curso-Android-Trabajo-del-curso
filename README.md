@@ -8,4 +8,4 @@ https://courses.edx.org/courses/course-v1:UPValenciaX+AIP201x+2T2019/course_prog
 # Descripción
 Práctica realizada durante el curso
 
-![Alt text](https://github.com/PatricioCoronado/Curso-Android-Trabajo-del-curso/blob/imagen.jpg "Optional title")
+![Alt text](https://github.com/PatricioCoronado/Curso-Android-Trabajo-del-curso/imagen.png "Optional title")
