@@ -52,8 +52,10 @@ public class VistaLugarActivity extends AppCompatActivity
         switch (item.getItemId())
         {
             case R.id.accion_compartir:
+                usoLugar.compartir(lugar);
                 return true;
             case R.id.accion_llegar:
+                usoLugar.verMapa(lugar);
                 return true;
             case R.id.accion_editar://Lanza la actividad que edita el lugar
                 usoLugar.editar(pos,RESULTADO_EDITAR);
@@ -152,6 +154,18 @@ public class VistaLugarActivity extends AppCompatActivity
             actualizaVistas();
             findViewById(R.id.scrollView1).invalidate();
         }
+    }
+
+    public void verMapa(View view) {
+        usoLugar.verMapa(lugar);
+    }
+
+    public void llamarTelefono(View view) {
+        usoLugar.llamarTelefono(lugar);
+    }
+
+    public void verPgWeb(View view) {
+        usoLugar.verPgWeb(lugar);
     }
 }
 
