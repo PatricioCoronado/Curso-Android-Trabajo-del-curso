@@ -18,6 +18,8 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -29,7 +31,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity //Así soporte Toolbar
 {
-    private RepositorioLugares lugares;
+    public AdaptadorLugares adaptador;
+    private RecyclerView recyclerView;
     private CasosUsoLugar usoLugar;
     private CasosUsoActividades usoActividad;
     public Button bAcercaDe;
@@ -42,9 +45,11 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //A partir de aquí mi código
-        lugares = ((Aplicacion) getApplication()).lugares;
+        RepositorioLugares lugares = ((Aplicacion) getApplication()).lugares;
         usoLugar = new CasosUsoLugar(this, lugares);
         //usoActividad = new CasosUsoActividades(this);
+        /*
+        //BOTONES
         //Acción del boton MOSTRAR........................
         bMostrar=findViewById(R.id.button01);
         bMostrar.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +80,8 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
                 lanzarPreferecias();
             }
         });
+        */
+        //FIN BOTONES
         //TOOLBAR.............................................
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -87,6 +94,28 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
                         .setAction("Action", null).show();
             }
         });
+
+        //********************************************************************
+        //He tenido que meter esto a capón para encontrar el recurso recycler_view
+        // Que se usa más abajo
+        setContentView(R.layout.content_main);
+        recyclerView = findViewById(R.id.recycler_view);
+        //*********************************************************************
+        adaptador = ((Aplicacion) getApplication()).adaptador;
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adaptador);
+
+        adaptador.setOnItemClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                int pos = recyclerView.getChildAdapterPosition(v);
+                usoLugar.mostrar(pos);
+            }
+        });
+
+
     } // Fin onCreate---------------------------------------------------------------------
 
     //MENU......................................................

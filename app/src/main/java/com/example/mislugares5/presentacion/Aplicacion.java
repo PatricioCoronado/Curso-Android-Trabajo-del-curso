@@ -8,6 +8,7 @@ public class    Aplicacion extends Application
     //Los atributos de la clase son los objetos a los que queremos acceder
     // En este caso un repositorio de Lugares
     public RepositorioLugares lugares = new LugaresLista();
+    public AdaptadorLugares adaptador = new AdaptadorLugares(lugares);
     @Override public void onCreate() {
         super.onCreate();
     }
