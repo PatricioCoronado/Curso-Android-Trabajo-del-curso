@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
     public Button bPreferencias;
     public Button bMostrar;
     @Override
+
+
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -47,41 +50,7 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
         //A partir de aquí mi código
         RepositorioLugares lugares = ((Aplicacion) getApplication()).lugares;
         usoLugar = new CasosUsoLugar(this, lugares);
-        //usoActividad = new CasosUsoActividades(this);
-        /*
-        //BOTONES
-        //Acción del boton MOSTRAR........................
-        bMostrar=findViewById(R.id.button01);
-        bMostrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                mostrarPreferencias();
-            }
-        });
-        //Acción del boton ACERCADE........................
-        bAcercaDe = findViewById(R.id.button03);
-        bAcercaDe.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                lanzarAcercaDe(null);
-            }
-        });
-        //Acción del boton SALIR............................
-        bSalir=findViewById(R.id.button04);
-        bSalir.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
-                lanzarSalir(null);
-            }
-       });
-        //Acción del boton PREFERENCIAS......................
-        bPreferencias=findViewById(R.id.button02);
-        bPreferencias.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                lanzarPreferecias();
-            }
-        });
-        */
-        //FIN BOTONES
+        usoActividad = new CasosUsoActividades(this);
         //TOOLBAR.............................................
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -94,18 +63,13 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
                         .setAction("Action", null).show();
             }
         });
-
-        //********************************************************************
-        //He tenido que meter esto a capón para encontrar el recurso recycler_view
-        // Que se usa más abajo
-        setContentView(R.layout.content_main);
-        recyclerView = findViewById(R.id.recycler_view);
-        //*********************************************************************
+        //Inicializa el RecyclerView
         adaptador = ((Aplicacion) getApplication()).adaptador;
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adaptador);
-
+        //
         adaptador.setOnItemClickListener(new View.OnClickListener()
         {
             @Override
@@ -114,8 +78,6 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
                 usoLugar.mostrar(pos);
             }
         });
-
-
     } // Fin onCreate---------------------------------------------------------------------
 
     //MENU......................................................

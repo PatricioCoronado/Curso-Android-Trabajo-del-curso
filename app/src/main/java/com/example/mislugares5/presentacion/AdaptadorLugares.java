@@ -17,26 +17,29 @@ public class AdaptadorLugares extends
         RecyclerView.Adapter<AdaptadorLugares.ViewHolder>
 {
     protected View.OnClickListener onClickListener;
-
     protected RepositorioLugares lugares;         // Lista de lugares a mostrar
+
     public AdaptadorLugares(RepositorioLugares lugares) {
         this.lugares = lugares;
     }
 
-    //Creamos nuestro ViewHolder, con los tipos de elementos a modificar
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    //Creamos clase  ViewHolder, con los componenete de lugar a personalizar
+    public static class ViewHolder extends RecyclerView.ViewHolder
+    {
         public TextView nombre, direccion;
         public ImageView foto;
         public RatingBar valoracion;
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView)
+        {
             super(itemView);
             nombre = itemView.findViewById(R.id.nombre);
             direccion = itemView.findViewById(R.id.direccion);
             foto = itemView.findViewById(R.id.foto);
             valoracion= itemView.findViewById(R.id.valoracion);
         }
-        // Personalizamos un ViewHolder a partir de un lugar
-        public void personaliza(Lugar lugar) {
+        // Método para personalizar la vista
+        public void personaliza(Lugar lugar)
+        {
             nombre.setText(lugar.getNombre());
             direccion.setText(lugar.getDireccion());
             int id = R.drawable.otros;
@@ -55,11 +58,12 @@ public class AdaptadorLugares extends
             foto.setScaleType(ImageView.ScaleType.FIT_END);
             valoracion.setRating(lugar.getValoracion());
         }
-    }
+    }// Class ViewHolder
 
     // Creamos el ViewHolder con la vista de un elemento sin personalizar
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
         // Inflamos la vista desde el xml
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.elemento_lista, parent, false);
@@ -82,4 +86,4 @@ public class AdaptadorLugares extends
     {
         this.onClickListener = onClickListener;
     }
-}
+}// class adaptadorLugares

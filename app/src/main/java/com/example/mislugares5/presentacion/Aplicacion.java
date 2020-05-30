@@ -1,21 +1,23 @@
 package com.example.mislugares5.presentacion;
 import android.app.Application;
-
 import com.example.mislugares5.datos.LugaresLista;
 import com.example.mislugares5.datos.RepositorioLugares;
-public class    Aplicacion extends Application
+//Application resulta engañoso el nombre. En realidad es una clase
+// para contener variables globales
+public class Aplicacion extends Application
 {
-    //Los atributos de la clase son los objetos a los que queremos acceder
+    //Los atributos de la clase son los objetos que queremos que sean globales
     // En este caso un repositorio de Lugares
     public RepositorioLugares lugares = new LugaresLista();
+    //El adaptador que rellenará el RecyclerView también es global
     public AdaptadorLugares adaptador = new AdaptadorLugares(lugares);
     @Override public void onCreate() {
         super.onCreate();
     }
     //Getter.....................................................
-    //Para leer el repositorio de lugares
-    //RepositorioLugares misLugares = ((Aplicacion) getApplication()).getLugares();
-    public RepositorioLugares getLugares() {
+    //Devuelve el repositorio de lugares
+    public RepositorioLugares getLugares()
+    {
         return lugares;
     }
 }

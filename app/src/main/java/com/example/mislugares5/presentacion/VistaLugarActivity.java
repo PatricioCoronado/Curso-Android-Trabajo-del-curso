@@ -167,5 +167,5 @@ public class VistaLugarActivity extends AppCompatActivity
     public void verPgWeb(View view) {
         usoLugar.verPgWeb(lugar);
     }
-}
+    }
 

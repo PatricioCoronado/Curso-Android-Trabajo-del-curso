@@ -33,10 +33,13 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include
+    <include layout="@layout/content_main"/>
+        <!--
+        <include
         android:id="@+id/bPreferencias"
-        layout="@layout/content_main"
         android:onClick="lanzarAcercaDe" />
+        -->
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

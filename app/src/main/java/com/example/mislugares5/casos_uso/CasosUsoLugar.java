@@ -44,16 +44,6 @@ public class CasosUsoLugar
         lugares.actualiza(id,nuevoLugar);
     }
 
-/*
-    public void editar(int pos, int codidoSolicitud) {
-        Intent i = new Intent(actividad, EdicionLugarActivity.class);
-        i.putExtra("pos", pos);
-        actividad.startActivityForResult(i, codidoSolicitud);
-
-
-    }
-    */
-
     public void compartir(Lugar lugar) {
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("text/plain");
@@ -80,6 +70,7 @@ public class CasosUsoLugar
                 : Uri.parse("geo:0,0?q=" + lugar.getDireccion());
         actividad.startActivity(new Intent("android.intent.action.VIEW", uri));
     }
+    public void nuevo() { return; }
 
 
 
