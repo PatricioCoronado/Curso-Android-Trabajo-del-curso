@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Places</string>
+    <string name="accion_mostrar">Show places</string>
+    <string name="accion_preferencias">Preferences</string>
+    <string name="accion_acerca_de">About</string>
+    <string name="accion_salir">Quit</string>
+    <string name="nombre_lugar">Name</string>
+    <string name="identificacion_lugar">The Enchanted City</string>
+    <string name="tipo_lugar">Turism</string>
+    <string name="notas_lugar">write your notes</string>
+    <string name="comentario_lugar">write your comments</string>
+    <string name="web_lugar">web page</string>
+    <string name="url_lugar">url</string>
+    <string name="telefono_lugar">telephon</string>
+    <string name="telefono_contacto_lugar">contact telephone</string>
+    <string name="direccion_lugar">address</string>
+    <string name="direc_lugar">address</string>
+    <string name="action_settings">Settings</string>
+    <string name="salir_lugar">Quit</string>
+    <string name="mostrar_main">Show</string>
+    <string name="preferencias_main">Preferences</string>
+    <string name="acerca_de_main">about</string>
+    <string name="salir_main">Quit</string>
+    <string name="tituloAplicacion">My Application</string>
+    <string name ="acerca_de">
+        Bajo ese almendro florido,\n
+        todo cargado de flor\n
+        recordé, yo he maldecido\n
+        mi juventud sin amor\n\n
+        Hoy, en mitad de la vida,\n
+        me he parado a meditar\n
+        ¡Juventud nunca vivida\n
+        quién te volviera a soñar!\n
+    </string>
+</resources>

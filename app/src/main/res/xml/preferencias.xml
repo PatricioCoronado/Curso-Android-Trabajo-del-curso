@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preferencias_principal" >
+    <CheckBoxPreference
+        android:key="notificaciones"
+        android:title="mandar notificaciones"
+        android:summary="notificar si estamos cerca de un lugar"/>
+    <ListPreference
+        android:key="ordenacion"
+        android:title="criterio de ordenación"
+        android:summary="que lugares quieres que aparezcan antes"
+        android:entries="@array/tiposCriterios"
+        android:entryValues="@array/tiposCriteriosValores"
+        android:defaultValue="1"/>
+    <EditTextPreference
+        android:key="maximo"
+        android:title="máximo de lugares a mostrar"
+        android:summary="limita el número de lugares que se pueden mostrar"
+        android:inputType="number"
+        android:defaultValue="5 "/>
+    <PreferenceScreen android:title="Notificaciones por correo">
+        <CheckBoxPreference
+            android:key="correo_bool"
+            android:title="notificar por email"
+            android:summary="notificar enviando un email"/>
+        <EditTextPreference
+            android:key="email"
+            android:defaultValue="direccion@gmail.com"
+            android:inputType="textEmailAddress"
+            android:summary="dirección de email para notificar"
+            android:title="email" />
+    </PreferenceScreen>
+</PreferenceScreen>

@@ -1,0 +1,12 @@
+<resources>
+    <string-array name="tiposCriterios">
+        <item>creación</item>
+        <item>valoracion</item>
+        <item>distancia</item>
+    </string-array>
+    <string-array name="tiposCriteriosValores">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>
