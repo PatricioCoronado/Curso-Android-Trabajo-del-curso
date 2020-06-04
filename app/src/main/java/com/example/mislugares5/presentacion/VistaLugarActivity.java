@@ -21,6 +21,7 @@ import java.util.Date;
 
 public class VistaLugarActivity extends AppCompatActivity
 {
+    private AdaptadorLugaresBD adaptador;
     private RepositorioLugares lugares;
     private CasosUsoLugar usoLugar;
     private  CasosUsoActividades usoActividad;
@@ -33,12 +34,14 @@ public class VistaLugarActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_lugar);
+        adaptador = ((Aplicacion) getApplication()).adaptador;
         Bundle extras = getIntent().getExtras();
         pos = extras.getInt("pos", 0);
         lugares = ((Aplicacion) getApplication()).lugares;
         usoLugar = new CasosUsoLugar(this, lugares);
         usoActividad = new CasosUsoActividades(this);
-        lugar = lugares.elemento(pos);
+        //lugar = lugares.elemento(pos);
+        lugar = adaptador.lugarPosicion (pos);
         actualizaVistas();
     }
     @Override

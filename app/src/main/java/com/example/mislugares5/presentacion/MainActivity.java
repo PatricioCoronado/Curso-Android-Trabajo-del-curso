@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.mislugares5.R;
 import com.example.mislugares5.casos_uso.CasosUsoActividades;
 import com.example.mislugares5.casos_uso.CasosUsoLugar;
+import com.example.mislugares5.datos.LugaresBD;
 import com.example.mislugares5.datos.RepositorioLugares;
 import com.example.mislugares5.presentacion.AcercaDeActivity;
 import com.example.mislugares5.presentacion.Aplicacion;
@@ -31,7 +32,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity //Así soporte Toolbar
 {
-    public AdaptadorLugares adaptador;
+    private LugaresBD lugares;
+    private AdaptadorLugaresBD adaptador;
+    //public AdaptadorLugares adaptador;
     private RecyclerView recyclerView;
     private CasosUsoLugar usoLugar;
     private CasosUsoActividades usoActividad;
@@ -73,11 +76,14 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
         adaptador.setOnItemClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
-                int pos = recyclerView.getChildAdapterPosition(v);
+            public void onClick(View v)
+            {
+                //int pos = recyclerView.getChildAdapterPosition(v);
+                int pos =(Integer)(v.getTag());
                 usoLugar.mostrar(pos);
             }
         });
+        adaptador = ((Aplicacion) getApplication()).adaptador;
     } // Fin onCreate---------------------------------------------------------------------
 
     //MENU......................................................
