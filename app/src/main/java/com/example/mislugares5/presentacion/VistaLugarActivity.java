@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mislugares5.R;
 import com.example.mislugares5.casos_uso.CasosUsoActividades;
 import com.example.mislugares5.casos_uso.CasosUsoLugar;
+import com.example.mislugares5.datos.LugaresBD;
 import com.example.mislugares5.datos.RepositorioLugares;
 import com.example.mislugares5.modelo.Lugar;
 import java.text.DateFormat;
@@ -22,7 +23,8 @@ import java.util.Date;
 public class VistaLugarActivity extends AppCompatActivity
 {
     private AdaptadorLugaresBD adaptador;
-    private RepositorioLugares lugares;
+    //private RepositorioLugares lugares;
+    private LugaresBD lugares;
     private CasosUsoLugar usoLugar;
     private  CasosUsoActividades usoActividad;
     private int pos;
@@ -35,10 +37,11 @@ public class VistaLugarActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_lugar);
         adaptador = ((Aplicacion) getApplication()).adaptador;
+        lugares = ((Aplicacion) getApplication()).lugares;
         Bundle extras = getIntent().getExtras();
         pos = extras.getInt("pos", 0);
         lugares = ((Aplicacion) getApplication()).lugares;
-        usoLugar = new CasosUsoLugar(this, lugares);
+        usoLugar = new CasosUsoLugar(this, lugares,adaptador);
         usoActividad = new CasosUsoActividades(this);
         //lugar = lugares.elemento(pos);
         lugar = adaptador.lugarPosicion (pos);

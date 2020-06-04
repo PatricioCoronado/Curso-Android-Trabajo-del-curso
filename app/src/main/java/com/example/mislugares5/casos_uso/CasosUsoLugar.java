@@ -5,20 +5,27 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
 
+import com.example.mislugares5.datos.LugaresBD;
 import com.example.mislugares5.datos.RepositorioLugares;
 import com.example.mislugares5.modelo.GeoPunto;
 import com.example.mislugares5.modelo.Lugar;
+import com.example.mislugares5.presentacion.AdaptadorLugaresBD;
 import com.example.mislugares5.presentacion.EdicionLugarActivity;
 import com.example.mislugares5.presentacion.VistaLugarActivity;
 
 public class CasosUsoLugar
 {
     private Activity actividad;
-    private RepositorioLugares lugares;
+    //private RepositorioLugares lugares;
+    private LugaresBD lugares;
+    private AdaptadorLugaresBD adaptador;
 
-    public CasosUsoLugar(Activity actividad, RepositorioLugares lugares) {
+    //public CasosUsoLugar(Activity actividad, RepositorioLugares lugares) {
+    public CasosUsoLugar(Activity actividad, LugaresBD lugares, AdaptadorLugaresBD adaptador)
+    {
         this.actividad = actividad;
         this.lugares = lugares;
+        this.adaptador = adaptador;
     }
     // OPERACIONES BÁSICAS
     public void mostrar(int pos)

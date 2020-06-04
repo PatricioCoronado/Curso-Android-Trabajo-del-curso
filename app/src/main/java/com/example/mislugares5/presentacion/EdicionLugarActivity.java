@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mislugares5.R;
 import com.example.mislugares5.casos_uso.CasosUsoLugar;
+import com.example.mislugares5.datos.LugaresBD;
 import com.example.mislugares5.datos.RepositorioLugares;
 import com.example.mislugares5.modelo.Lugar;
 import com.example.mislugares5.modelo.TipoLugar;
@@ -26,7 +27,9 @@ import java.util.Date;
 
 public class EdicionLugarActivity extends AppCompatActivity
 {
-    private RepositorioLugares lugares;
+    private AdaptadorLugaresBD adaptador;
+    //private RepositorioLugares lugares;
+    private LugaresBD lugares;
     private CasosUsoLugar usoLugar;
     private int pos;
     private int _id;
@@ -41,12 +44,14 @@ public class EdicionLugarActivity extends AppCompatActivity
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edicion_lugares);
+        adaptador = ((Aplicacion) getApplication()).adaptador;
         lugares = ((Aplicacion) getApplication()).lugares;
-        usoLugar = new CasosUsoLugar(this, lugares);
+        usoLugar = new CasosUsoLugar(this, lugares, adaptador);
         Bundle extras = getIntent().getExtras();
         //pos=0;
         pos = extras.getInt("pos", 0);
-        lugar = lugares.elemento(pos);
+        //lugar = lugares.elemento(pos);
+        lugar =  adaptador.lugarPosicion (pos);
         //Spinner
         tipo = findViewById(R.id.tipo);
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this,

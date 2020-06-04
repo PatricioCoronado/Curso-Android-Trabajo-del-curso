@@ -51,8 +51,10 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //A partir de aquí mi código
-        RepositorioLugares lugares = ((Aplicacion) getApplication()).lugares;
-        usoLugar = new CasosUsoLugar(this, lugares);
+        //RepositorioLugares lugares = ((Aplicacion) getApplication()).lugares;
+        lugares =  ((Aplicacion) getApplication()).lugares;
+        adaptador = ((Aplicacion) getApplication()).adaptador;
+        usoLugar = new CasosUsoLugar(this, lugares, adaptador);
         usoActividad = new CasosUsoActividades(this);
         //TOOLBAR.............................................
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
