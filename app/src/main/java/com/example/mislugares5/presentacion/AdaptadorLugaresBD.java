@@ -30,16 +30,25 @@ public class AdaptadorLugaresBD extends AdaptadorLugares
         return LugaresBD.extraeLugar(cursor);
     }
 
-    public int idPosicion(int posicion) {
+    public int idPosicion(int posicion)
+    {
         cursor.moveToPosition(posicion);
         if (cursor.getCount()>0) return cursor.getInt(0);
         else                     return -1;
 
         //return cursor.getInt(0);
     }
+    public int posicionId(int id) {
+        int pos = 0;
+        while (pos<getItemCount() && idPosicion(pos)!=id) pos++;
+        if (pos >= getItemCount()) return -1;
+        else                       return pos;
+    }
+
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int posicion) {
+    public void onBindViewHolder(ViewHolder holder, int posicion)
+    {
         Lugar lugar = lugarPosicion(posicion);
         holder.personaliza(lugar);
         holder.itemView.setTag(new Integer(posicion));

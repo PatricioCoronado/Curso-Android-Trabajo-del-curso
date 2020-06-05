@@ -83,7 +83,9 @@ public class EdicionLugarActivity extends AppCompatActivity
                 lugar.setTelefono(Integer.parseInt(telefono.getText().toString()));
                 lugar.setUrl(url.getText().toString());
                 lugar.setComentario(comentario.getText().toString());
-                usoLugar.guardar(pos, lugar);
+                //usoLugar.guardar(pos, lugar);
+                int _id = adaptador.idPosicion(pos);//Lee la posición en la tabla de la B de Datos.
+                usoLugar.guardar(_id, lugar);
                 finish();
                 return true;
             default:

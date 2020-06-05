@@ -49,6 +49,8 @@ public class CasosUsoLugar
     public void guardar(int id, Lugar nuevoLugar)
     {
         lugares.actualiza(id,nuevoLugar);
+        adaptador.setCursor(lugares.extraeCursor());
+        adaptador.notifyDataSetChanged();
     }
 
     public void compartir(Lugar lugar) {

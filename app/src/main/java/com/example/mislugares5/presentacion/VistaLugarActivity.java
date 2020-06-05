@@ -22,6 +22,7 @@ import java.util.Date;
 
 public class VistaLugarActivity extends AppCompatActivity
 {
+    public int _id = -1;
     private AdaptadorLugaresBD adaptador;
     //private RepositorioLugares lugares;
     private LugaresBD lugares;
@@ -39,7 +40,12 @@ public class VistaLugarActivity extends AppCompatActivity
         adaptador = ((Aplicacion) getApplication()).adaptador;
         lugares = ((Aplicacion) getApplication()).lugares;
         Bundle extras = getIntent().getExtras();
-        pos = extras.getInt("pos", 0);
+        //
+        //pos = extras.getInt("pos", 0);
+        if (extras != null) pos = extras.getInt("pos", 0);
+        else                pos = 0;
+        _id = adaptador.idPosicion(pos);
+        //
         lugares = ((Aplicacion) getApplication()).lugares;
         usoLugar = new CasosUsoLugar(this, lugares,adaptador);
         usoActividad = new CasosUsoActividades(this);
@@ -47,12 +53,23 @@ public class VistaLugarActivity extends AppCompatActivity
         lugar = adaptador.lugarPosicion (pos);
         actualizaVistas();
     }
+
+
+
+
+
+
+
+
+
+    //Menú
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu)
     {
         getMenuInflater().inflate(R.menu.vista_lugar, menu);
         return true;
     }
+    //Respuesta al resultado del menú
     @Override public boolean onOptionsItemSelected(MenuItem item)
     {
         switch (item.getItemId())
@@ -73,6 +90,21 @@ public class VistaLugarActivity extends AppCompatActivity
                 return super.onOptionsItemSelected(item);
         }
     }
+    //Recepción de la respuesta de EdicionLugarActivity
+    @Override
+        protected void onActivityResult(int requestCode, int resultCode,Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULTADO_EDITAR)
+        {
+            lugar = lugares.elemento(_id);
+            pos = adaptador.idPosicion(_id);
+            //pos = adaptador.posicionId(_id);
+            actualizaVistas();
+            findViewById(R.id.scrollView1).invalidate();
+        }
+    }
+
    public void confirmarBorradoLugar()
     {
         new AlertDialog.Builder(this)
@@ -151,16 +183,6 @@ public class VistaLugarActivity extends AppCompatActivity
                 }
         );
     }
-    //Recepción de la respuesta de EdicionLugarActivity
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULTADO_EDITAR) {
-            actualizaVistas();
-            findViewById(R.id.scrollView1).invalidate();
-        }
-    }
 
     public void verMapa(View view) {
         usoLugar.verMapa(lugar);
@@ -173,5 +195,9 @@ public class VistaLugarActivity extends AppCompatActivity
     public void verPgWeb(View view) {
         usoLugar.verPgWeb(lugar);
     }
-    }
+
+
+
+
+}
 

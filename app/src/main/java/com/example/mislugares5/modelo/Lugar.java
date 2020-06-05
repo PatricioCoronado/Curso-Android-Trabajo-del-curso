@@ -45,76 +45,58 @@ public class Lugar
     public String getNombre() {
         return nombre;
     }
-
     public String getDireccion() {
         return direccion;
     }
-
     public GeoPunto getPosicion() {
         return posicion;
     }
-
     public String getFoto() {
         return foto;
     }
-
     public int getTelefono() {
         return telefono;
     }
-
     public String getUrl() {
         return url;
     }
-
     public String getComentario() {
         return comentario;
     }
-
     public long getFecha() {
         return fecha;
     }
-
     public float getValoracion() {
         return valoracion;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
     public void setPosicion(GeoPunto posicion) {
         this.posicion = posicion;
     }
-
     public void setFoto(String foto) {
         this.foto = foto;
     }
-
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-
     public void setUrl(String url) {
         this.url = url;
     }
-
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-
     public void setFecha(long fecha) {
         this.fecha = fecha;
     }
-
     public void setValoracion(float valoracion) {
         this.valoracion = valoracion;
     }
-
-    @Override
+    @Override //Método toString
     public String toString() {
         return "Lugar{" +
                 "nombre='" + nombre + '\'' +
