@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.mislugares5.modelo.GeoPunto;
 import com.example.mislugares5.modelo.Lugar;
 import com.example.mislugares5.modelo.TipoLugar;
-
+// Cuand 
 public class LugaresBD extends SQLiteOpenHelper implements RepositorioLugares {
 
     Context contexto;
@@ -19,8 +19,8 @@ public class LugaresBD extends SQLiteOpenHelper implements RepositorioLugares {
     }
 
     @Override public void onCreate(SQLiteDatabase bd) {
-        bd.execSQL("CREATE TABLE lugares ("+
-                "_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+        bd.execSQL("CREATE TABLE lugares " +
+                "("+"_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "nombre TEXT, " +
                 "direccion TEXT, " +
                 "longitud REAL, " +
