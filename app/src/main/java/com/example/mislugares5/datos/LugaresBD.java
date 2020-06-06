@@ -120,14 +120,28 @@ public class LugaresBD extends SQLiteOpenHelper implements RepositorioLugares {
 
     }
 
-    @Override
-    public int nuevo() {
-        return 0;
-    }
+    //@Override public int nuevo() {return 0;}
+    @Override public int nuevo() {
+        int _id = -1;
+        Lugar lugar = new Lugar();
+        getWritableDatabase().execSQL("INSERT INTO lugares (nombre, " +
+                "direccion, longitud, latitud, tipo, foto, telefono, url, " +
+                "comentario, fecha, valoracion) VALUES ('', '',  " +
+                lugar.getPosicion().getLongitud() + ","+
+                lugar.getPosicion().getLatitud() + ", "+ lugar.getTipo().ordinal()+
+                ", '', 0, '', '', " + lugar.getFecha() + ", 0)");
+        Cursor c = getReadableDatabase().rawQuery(
+                "SELECT _id FROM lugares WHERE fecha = " + lugar.getFecha(), null);
+        if (c.moveToNext()) _id = c.getInt(0);
+        c.close();
+        return _id;
+    }//nuevo();
 
-    @Override
-    public void borrar(int id) {
 
+    //@Override    public void borrar(int id) {    }
+    public void borrar(int id)
+    {
+        getWritableDatabase().execSQL("DELETE FROM lugares WHERE _id = " + id);
     }
 
     @Override

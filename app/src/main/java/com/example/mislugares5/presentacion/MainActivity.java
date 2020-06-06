@@ -43,9 +43,7 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
     public Button bPreferencias;
     public Button bMostrar;
     @Override
-
-
-
+    //Oncreate al principio del ciclo de vida de la actividad
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -59,13 +57,14 @@ public class MainActivity extends AppCompatActivity //Así soporte Toolbar
         //TOOLBAR.............................................
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //FLOATING BUTTON.....................................
+        //FLOATING ACTION BUTTON..............................
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                usoLugar.nuevo();
             }
         });
         //Inicializa el RecyclerView

@@ -47,11 +47,19 @@ public class EdicionLugarActivity extends AppCompatActivity
         adaptador = ((Aplicacion) getApplication()).adaptador;
         lugares = ((Aplicacion) getApplication()).lugares;
         usoLugar = new CasosUsoLugar(this, lugares, adaptador);
+        //
+        Bundle extras = getIntent().getExtras();
+        pos = extras.getInt("pos", -1) ;
+        _id = extras.getInt("_id",-1);
+        if (_id!=-1) lugar = lugares.elemento(_id);
+        else lugar = adaptador.lugarPosicion(pos);
+        /*
         Bundle extras = getIntent().getExtras();
         //pos=0;
         pos = extras.getInt("pos", 0);
         //lugar = lugares.elemento(pos);
         lugar =  adaptador.lugarPosicion (pos);
+        */
         //Spinner
         tipo = findViewById(R.id.tipo);
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this,
@@ -75,6 +83,7 @@ public class EdicionLugarActivity extends AppCompatActivity
     {
         switch (item.getItemId()) {
             case R.id.accion_cancelar:
+                if (_id!=-1) lugares.borrar(_id);
                 return true;
             case R.id.accion_guardar:
                 lugar.setNombre(nombre.getText().toString());
@@ -84,7 +93,8 @@ public class EdicionLugarActivity extends AppCompatActivity
                 lugar.setUrl(url.getText().toString());
                 lugar.setComentario(comentario.getText().toString());
                 //usoLugar.guardar(pos, lugar);
-                int _id = adaptador.idPosicion(pos);//Lee la posición en la tabla de la B de Datos.
+                //int _id = adaptador.idPosicion(pos);//Lee la posición en la tabla de la B de Datos.
+                if (_id==-1)  _id = adaptador.idPosicion(pos);
                 usoLugar.guardar(_id, lugar);
                 finish();
                 return true;

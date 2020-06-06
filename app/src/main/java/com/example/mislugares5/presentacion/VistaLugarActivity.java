@@ -85,6 +85,8 @@ public class VistaLugarActivity extends AppCompatActivity
                 return true;
             case R.id.accion_borrar:
                 confirmarBorradoLugar();
+                int _id = adaptador.idPosicion(pos);
+                usoLugar.borrar(_id);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -179,6 +181,8 @@ public class VistaLugarActivity extends AppCompatActivity
                     public void onRatingChanged(RatingBar ratingBar,float valor, boolean fromUser)
                     {
                         lugar.setValoracion(valor);
+                        usoLugar.actualizaPosLugar(pos, lugar);
+                        pos = adaptador.posicionId(_id);
                     }
                 }
         );

@@ -4,6 +4,8 @@ import android.app.Application;
 import com.example.mislugares5.datos.LugaresBD;
 import com.example.mislugares5.datos.LugaresLista;
 import com.example.mislugares5.datos.RepositorioLugares;
+import com.example.mislugares5.modelo.GeoPunto;
+
 //Application resulta engañoso el nombre. En realidad es una clase
 // para contener variables globales
 public class Aplicacion extends Application
@@ -14,12 +16,14 @@ public class Aplicacion extends Application
     //El adaptador que rellenará el RecyclerView también es global
     //public AdaptadorLugares adaptador = new AdaptadorLugares(lugares);
 
+    public GeoPunto posicionActual;
     public LugaresBD lugares;
     public AdaptadorLugaresBD adaptador;
     //
     @Override public void onCreate()
     {
         super.onCreate();
+        posicionActual = new GeoPunto(4.34,12.34);
         lugares = new LugaresBD(this);
         adaptador= new AdaptadorLugaresBD(lugares, lugares.extraeCursor());
     }

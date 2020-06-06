@@ -10,6 +10,7 @@ import com.example.mislugares5.datos.RepositorioLugares;
 import com.example.mislugares5.modelo.GeoPunto;
 import com.example.mislugares5.modelo.Lugar;
 import com.example.mislugares5.presentacion.AdaptadorLugaresBD;
+import com.example.mislugares5.presentacion.Aplicacion;
 import com.example.mislugares5.presentacion.EdicionLugarActivity;
 import com.example.mislugares5.presentacion.VistaLugarActivity;
 
@@ -37,7 +38,13 @@ public class CasosUsoLugar
     public void borrar(final int id)
     {
         lugares.borrar(id);
+        adaptador.setCursor(lugares.extraeCursor());
+        adaptador.notifyDataSetChanged();
         actividad.finish();
+        /*
+        lugares.borrar(id);
+        actividad.finish();
+        */
     }
     public void editar(int pos, int codidoSolicitud)
     {
@@ -71,7 +78,8 @@ public class CasosUsoLugar
                 Uri.parse(lugar.getUrl())));
     }
 
-    public final void verMapa(Lugar lugar) {
+    public final void verMapa(Lugar lugar)
+    {
         double lat = lugar.getPosicion().getLatitud();
         double lon = lugar.getPosicion().getLongitud();
         Uri uri = lugar.getPosicion() != GeoPunto.SIN_POSICION
@@ -79,9 +87,25 @@ public class CasosUsoLugar
                 : Uri.parse("geo:0,0?q=" + lugar.getDireccion());
         actividad.startActivity(new Intent("android.intent.action.VIEW", uri));
     }
-    public void nuevo() { return; }
+    public void actualizaPosLugar(int pos, Lugar lugar)
+    {
+        int id = adaptador.idPosicion(pos);
+        guardar(id, lugar);  //
+    }
+    //public void nuevo() { return; }
 
-
+    public void nuevo() {
+        int id = lugares.nuevo();
+        GeoPunto posicion = ((Aplicacion) actividad.getApplication()).posicionActual;
+        if (!posicion.equals(GeoPunto.SIN_POSICION)) {
+            Lugar lugar = lugares.elemento(id);
+            lugar.setPosicion(posicion);
+            lugares.actualiza(id, lugar);
+        }
+        Intent i = new Intent(actividad, EdicionLugarActivity.class);
+        i.putExtra("_id", id);
+        actividad.startActivity(i);
+    }
 
 
 

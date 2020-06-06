@@ -26,10 +26,12 @@ public class AdaptadorLugares extends
     //Creamos clase  ViewHolder, con los componenete de lugar a personalizar
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
+        //El viewHolder contiene los elementos a mostrar en la lista
         public TextView nombre, direccion;
         public ImageView foto;
         public RatingBar valoracion;
-        public ViewHolder(View itemView)
+        //Constructor
+        public ViewHolder(View itemView)//toda clase de la interfaz de android desciende de la clase View
         {
             super(itemView);
             nombre = itemView.findViewById(R.id.nombre);
